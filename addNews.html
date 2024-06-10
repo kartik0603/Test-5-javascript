@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News Add</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <script src="bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link" href="addNews.html">Add News</a>
+                    <a class="nav-link" href="signUP.html">Sign UP</a>
+                    <a class="nav-link" href="login.html">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="vh-100" style="background-color: #eee">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-black" style="border-radius: 25px">
+                        <div class="card-body p-md-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                                        ADD News
+                                    </p>
+
+                                    <form class="mx-1 mx-md-4" id="UseraddNewsDATA">
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="UserNews_Title" class="form-control" />
+                                                <label class="form-label" for="UserNews_Title">Headline</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="url" id="UserNews_URL" class="form-control" />
+                                                <label class="form-label" for="UserNews_URL">Image URL</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="UserNews_description" class="form-control" />
+                                                <label class="form-label" for="UserNews_description">Description of News</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <select class="form-select" id="news_country" aria-label="Default select example">
+                                                    <option selected>Select Country</option>
+                                                    <option value="India">India</option>
+                                                    <option value="Japan">Japan</option>
+                                                    <option value="Germany">Germany</option>
+                                                    <option value="USA">USA</option>
+                                                    <option value="UK">UK</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <button type="submit" class="btn btn-primary btn-lg" id="UserNewsSubmit">
+                                                Add This News
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                    <img src="https://media.istockphoto.com/id/1369150014/vector/breaking-news-with-world-map-background-vector.jpg?s=612x612&w=0&k=20&c=9pR2-nDBhb7cOvvZU_VdgkMmPJXrBQ4rB1AkTXxRIKM="
+                                        class="img-fluid" alt="Sample image" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let news = JSON.parse(localStorage.getItem("news")) || [];
+
+        const handle_ADD_News_data = (e) => {
+            e.preventDefault();
+
+            let newNews = {
+                title: document.getElementById("UserNews_Title").value,
+                url: document.getElementById("UserNews_URL").value,
+                description: document.getElementById("UserNews_description").value,
+                country: document.getElementById("news_country").value,
+            };
+
+            news.push(newNews);
+            localStorage.setItem("news", JSON.stringify(news));
+            window.location.href = "index.html";
+        };
+
+        document
+            .getElementById("UseraddNewsDATA")
+            .addEventListener("submit", handle_ADD_News_data);
+    </script>
+</body>
+
+</html>
