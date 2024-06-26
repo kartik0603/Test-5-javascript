@@ -46,51 +46,54 @@
         </div>
     </div>
 
-    <script >
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
-   
-    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
-    const profileCard = document.getElementById("profileCard");
+         
+            const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+            const profileCard = document.getElementById("profileCard");
 
-    if (userProfile) {
-        profileCard.innerHTML = `
-            <img src="${userProfile.imageUrl}" class="card-img-top" alt="Profile Picture">
-            <div class="card-body">
-                <h5 class="card-title">${userProfile.name}</h5>
-                <p class="card-text">Email: ${userProfile.email}</p>
-                <p class="card-text">Country: ${userProfile.country}</p>
-            </div>
-        `;
-    } else {
-        profileCard.innerHTML = `
-            <div class="card-body">
-                <h5 class="card-title">No user profile found</h5>
-                <p class="card-text">Please sign up to create a profile.</p>
-            </div>
-        `;
-    }
+        
+            if (userProfile) {
+             
+                profileCard.innerHTML = `
+                    <img src="${userProfile.imageUrl}" class="card-img-top" alt="Profile Picture">
+                    <div class="card-body">
+                        <h5 class="card-title">${userProfile.name}</h5>
+                        <p class="card-text">Email: ${userProfile.email}</p>
+                        <p class="card-text">Country: ${userProfile.country}</p>
+                    </div>
+                `;
+            } else {
+               
+                profileCard.innerHTML = `
+                    <div class="card-body">
+                        <h5 class="card-title">No user profile found</h5>
+                        <p class="card-text">Please sign up to create a profile.</p>
+                    </div>
+                `;
+            }
 
-   
-    const newsData = JSON.parse(localStorage.getItem("news")) || [];
-    const newsContainer = document.getElementById("newsContainer");
+            
+            const newsData = JSON.parse(localStorage.getItem("news")) || [];
+            const newsContainer = document.getElementById("newsContainer");
 
-    newsData.forEach(news => {
-        const newsCard = document.createElement("div");
-        newsCard.classList.add("col-md-6", "news-card");
-        newsCard.innerHTML = `
-            <div class="card">
-                <img src="${news.url}" class="card-img-top" alt="News Image">
-                <div class="card-body">
-                    <h5 class="card-title">${news.title}</h5>
-                    <p class="card-text">${news.description}</p>
-                    <p class="card-text"><small class="text-muted">Country: ${news.country}</small></p>
-                </div>
-            </div>
-        `;
-        newsContainer.appendChild(newsCard);
-    });
-});
-
+          
+            newsData.forEach(news => {
+                const newsCard = document.createElement("div");
+                newsCard.classList.add("col-md-6", "news-card");
+                newsCard.innerHTML = `
+                    <div class="card">
+                        <img src="${news.url}" class="card-img-top" alt="News Image">
+                        <div class="card-body">
+                            <h5 class="card-title">${news.title}</h5>
+                            <p class="card-text">${news.description}</p>
+                            <p class="card-text"><small class="text-muted">Country: ${news.country}</small></p>
+                        </div>
+                    </div>
+                `;
+                newsContainer.appendChild(newsCard);
+            });
+        });
     </script>
 </body>
 </html>

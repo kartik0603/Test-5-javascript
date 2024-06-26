@@ -5,8 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
-    <link rel="stylesheet" href="bootstrap.min.css" />
-    <script src="bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -39,7 +42,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="text" id="userName" class="form-control" />
+                                                <input type="text" id="userName" class="form-control" required />
                                                 <label class="form-label" for="userName">Name</label>
                                             </div>
                                         </div>
@@ -47,33 +50,35 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="email" id="userEmail" class="form-control" />
+                                                <input type="email" id="userEmail" class="form-control" required />
                                                 <label class="form-label" for="userEmail">Email</label>
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
-                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="password" id="userpassword" class="form-control" />
-                                                <label class="form-label" for="userpassword">Password</label>
+                                                <input type="password" id="userPassword" class="form-control" required />
+                                                <label class="form-label" for="userPassword">Password</label>
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-image fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="url" id="userImageUrl" class="form-control" />
+                                                <input type="url" id="userImageUrl" class="form-control" required />
                                                 <label class="form-label" for="userImageUrl">Profile Image URL</label>
                                             </div>
+                                        </div>
+                                        <div class="text-center mb-4">
+                                            <img id="profileImagePreview" src="" alt="Profile Image Preview" class="img-fluid" style="max-width: 200px; display: none;">
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-flag fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <select class="form-select" id="userCountry"
-                                                    aria-label="Default select example">
-                                                    <option selected>Select Country</option>
+                                                <select class="form-select" id="userCountry" aria-label="Default select example" required>
+                                                    <option value="" selected>Select Country</option>
                                                     <option value="India">India</option>
                                                     <option value="Japan">Japan</option>
                                                     <option value="Germany">Germany</option>
@@ -91,8 +96,7 @@
                                     </form>
                                 </div>
                                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                                        class="img-fluid" alt="Sample image" />
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp" class="img-fluid" alt="Sample image" />
                                 </div>
                             </div>
                         </div>
@@ -103,22 +107,26 @@
     </section>
 
     <script>
-        document
-            .getElementById("UserProfileForm")
-            .addEventListener("submit", function (e) {
-                e.preventDefault();
-                let users = JSON.parse(localStorage.getItem("users")) || {};
+    
 
-                let user = {
-                    name: document.getElementById("userName").value,
-                    email: document.getElementById("userEmail").value,
-                    imageUrl: document.getElementById("userImageUrl").value,
-                    country: document.getElementById("userCountry").value,
-                };
+        document.getElementById("UserProfileForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            let users = JSON.parse(localStorage.getItem("users")) || [];
 
-                localStorage.setItem("user", JSON.stringify(user));
-                window.location.href = "login.html";
-            });
+            let user = {
+                name: document.getElementById("userName").value,
+                email: document.getElementById("userEmail").value,
+                password: document.getElementById("userPassword").value,
+                imageUrl: document.getElementById("userImageUrl").value,
+                country: document.getElementById("userCountry").value,
+            };
+
+            users.push(user); 
+            localStorage.setItem("users", JSON.stringify(users));
+            localStorage.setItem("userProfile", JSON.stringify(user));
+
+            window.location.href = "login.html";
+        });
     </script>
 </body>
 

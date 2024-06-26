@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <script src="bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <style>
         body {
@@ -99,8 +101,8 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                     <a class="nav-link" href="addNews.html">Add News</a>
-                    <a class="nav-link" href="signUP.html">Sign UP</a>
-                    <a class="nav-link" href="login.html">Login</a>
+                    <a class="nav-link" href="signup.html">Sign UP</a>
+                    <a class="nav-link" href="signin.html">Login</a>
                 </div>
             </div>
         </div>
@@ -120,19 +122,19 @@
     <div id="InvalidUser"></div>
 
     <script>
-        let users = JSON.parse(localStorage.getItem("users")) || [];
+        const users = JSON.parse(localStorage.getItem("users")) || [];
 
         const handleLoginData = (e) => {
             e.preventDefault();
 
-            let useremail = document.getElementById("loginUemail").value;
-            let userpassword = document.getElementById("LoginUpassword").value;
-            let validUser = users.find(user => user.useremail === useremail && user.userpassword === userpassword);
+            const useremail = document.getElementById("loginUemail").value;
+            const userpassword = document.getElementById("LoginUpassword").value;
+            const validUser = users.find(user => user.email === useremail && user.password === userpassword);
 
             if (validUser) {
                 document.getElementById("SuccessfulLogin").innerHTML = "Login Successful";
                 setTimeout(() => {
-                    window.location.href = "index.html";
+                    window.location.href = "addNews.html";
                 }, 2000); 
             } else {
                 document.getElementById("InvalidUser").innerHTML = "Invalid User Data";
